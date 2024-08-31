@@ -2,7 +2,7 @@
 
 #### IEEE Journal of Biomedical and Health Informatics (JBHI)
 
-[Zhangkai Ni](https://eezkni.github.io/)<sup>1</sup>, Runyu Xiao<sup>1</sup>, [Wenhan Yang](https://flyywh.github.io/)<sup>2</sup>, Hanli Wang<sup>1</sup>, Zhihua Wang<sup>3</sup>, Lihua Xiang<sup>4</sup>, Liping Sun<sup>4</sup> <br>
+[Zhangkai Ni](https://eezkni.github.io/)<sup>1</sup>, [Runyu Xiao](https://github.com/Xiao-R-Y)<sup>1</sup>, [Wenhan Yang](https://flyywh.github.io/)<sup>2</sup>, Hanli Wang<sup>1</sup>, Zhihua Wang<sup>3</sup>, Lihua Xiang<sup>4</sup>, Liping Sun<sup>4</sup> <br>
 ##### [[Paper-URL]()] <!-- Should be added later -->
 
 <sup>1</sup>Tongji University, <sup>2</sup>Peng Cheng Laboratory, <sup>3</sup>Shenzhen MSU-BIT University, <sup>4</sup>Shanghai Tenth Peoples Hospital
