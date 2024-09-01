@@ -1,17 +1,17 @@
 ## M2Trans: Multi-Modal Regularized Course-to-Fine Transformer for Ultrasound Image Super-Resolution
 
-#### IEEE Journal of Biomedical and Health Informatics (JBHI)
+#### IEEE Journal of Biomedical and Health Informatics (J-BHI)
 
 [Zhangkai Ni](https://eezkni.github.io/)<sup>1</sup>, Runyu Xiao<sup>1</sup>, [Wenhan Yang](https://flyywh.github.io/)<sup>2</sup>, Hanli Wang<sup>1</sup>, Zhihua Wang<sup>3</sup>, Lihua Xiang<sup>4</sup>, Liping Sun<sup>4</sup> <br>
 ##### [[Paper-URL]()] <!-- Should be added later -->
 
 <sup>1</sup>Tongji University, <sup>2</sup>Peng Cheng Laboratory, <sup>3</sup>Shenzhen MSU-BIT University, <sup>4</sup>Shanghai Tenth Peoples Hospital
 
-This website shares the Pytorch codes of the "M2Trans: Multi-Modal Regularized Course-to-Fine Transformer for Ultrasound Image Super-Resolution", IEEE Journal of Biomedical and Health Informatics (JBHI), Accepted, Month 2024.  <!-- Should be changed later -->
+This repository provides the official PyTorch implementation for the paper "M2Trans: Multi-Modal Regularized Course-to-Fine Transformer for Ultrasound Image Super-Resolution", IEEE Journal of Biomedical and Health Informatics (J-BHI), Accepted, August 2024.  <!-- Should be changed later -->
 
 ### The code will be updated soon...
 
-### Abstract
+## Abstract
 Ultrasound image super-resolution (SR) aims to transform low-resolution images into high-resolution ones, thereby restoring intricate details crucial for improved diagnostic accuracy. However, prevailing methods relying solely on image modality guidance and pixel-wise loss functions struggle to capture the distinct characteristics of medical images, such as unique texture patterns and specific colors harboring critical diagnostic information. To overcome these challenges, this paper introduces the Multi-Modal Regularized Coarse-to-fine Transformer (M2Trans) for Ultrasound Image SR. By integrating the text modality, we establish joint image-text guidance during training, leveraging the medical CLIP model to incorporate richer priors from text descriptions into the SR optimization process, enhancing detail, structure, and semantic recovery. Furthermore, we propose a novel coarse-to-fine transformer comprising multiple branches infused with self-attention and frequency transforms to efficiently capture signal dependencies across different scales. Extensive experimental results demonstrate significant improvements over state-of-the-art methods on benchmark datasets, including CCA-US, US-CASE, and our newly created dataset MMUS1K, with a minimum improvement of 0.17dB, 0.30dB, and 0.28dB in terms of PSNR.
 
 <!-- **The framework of M2Trans:** -->
