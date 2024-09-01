@@ -5,7 +5,7 @@
 [Zhangkai Ni](https://eezkni.github.io/)<sup>1</sup>, Runyu Xiao<sup>1</sup>, [Wenhan Yang](https://flyywh.github.io/)<sup>2</sup>, Hanli Wang<sup>1</sup>, Zhihua Wang<sup>3</sup>, Lihua Xiang<sup>4</sup>, Liping Sun<sup>4</sup> <br>
 ##### [[Paper-URL]()] <!-- Should be added later -->
 
-<sup>1</sup>Tongji University, <sup>2</sup>Peng Cheng Laboratory, <sup>3</sup>Shenzhen MSU-BIT University, <sup>4</sup>Shanghai Tenth Peoples Hospital
+<sup>1</sup>Tongji University, <sup>2</sup>Pengcheng Laboratory, <sup>3</sup>Shenzhen MSU-BIT University, <sup>4</sup>Shanghai Tenth Peoples Hospital
 
 This repository provides the official PyTorch implementation for the paper "M2Trans: Multi-Modal Regularized Course-to-Fine Transformer for Ultrasound Image Super-Resolution", IEEE Journal of Biomedical and Health Informatics (J-BHI), Accepted, August 2024.  <!-- Should be changed later -->
 
