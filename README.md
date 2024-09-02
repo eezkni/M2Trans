@@ -13,11 +13,13 @@ This repository provides the official PyTorch implementation for the paper "M2Tr
 
 ![Teaser](./img/pipeline.png)
 
+
 ## Abstract
 Ultrasound image super-resolution (SR) aims to transform low-resolution images into high-resolution ones, thereby restoring intricate details crucial for improved diagnostic accuracy. However, prevailing methods relying solely on image modality guidance and pixel-wise loss functions struggle to capture the distinct characteristics of medical images, such as unique texture patterns and specific colors harboring critical diagnostic information. To overcome these challenges, this paper introduces the Multi-Modal Regularized Coarse-to-fine Transformer (M2Trans) for Ultrasound Image SR. By integrating the text modality, we establish joint image-text guidance during training, leveraging the medical CLIP model to incorporate richer priors from text descriptions into the SR optimization process, enhancing detail, structure, and semantic recovery. Furthermore, we propose a novel coarse-to-fine transformer comprising multiple branches infused with self-attention and frequency transforms to efficiently capture signal dependencies across different scales. Extensive experimental results demonstrate significant improvements over state-of-the-art methods on benchmark datasets, including CCA-US, US-CASE, and our newly created dataset MMUS1K, with a minimum improvement of 0.17dB, 0.30dB, and 0.28dB in terms of PSNR.
 
 <!-- **The framework of M2Trans:** -->
 <!-- <div align=center><img src="./img/pipeline.png" width = "100%" height = "100%" /></div> -->
+
 
 ## Dependencies & Installation
 Please refer to the following simple steps for installation.
@@ -31,6 +33,7 @@ conda env create -f environment.yml
 conda activate M2Trans
 pip install medclip
 ```
+
 
 ## Datasets
  * CCA-US: http://splab.cz/en/download/databaze/ultrasound
@@ -81,13 +84,13 @@ data
                         |       |----......
 ```
 
+
 ## Testing
 ```
 cd M2Trans
 python test.py --cofig ./configs/M2Trans_x4_test.yml
 ```
 <!--Tips: You should download the pretrained models first on [URL]() and put the pt files in checkpoints folder first.<!--Should be changed later -->
-
 
 
 ## Training
@@ -117,9 +120,10 @@ If M2Trans helps your research or work, please consider citing the following wor
 ```
 <!--Should be changed later -->
 
+
 ## Contact
 Thanks for your attention! If you have any suggestion or question, feel free to leave a message here or contact Dr. Zhangkai Ni (eezkni@gmail.com).
 
-## License
 
+## License
 [MIT License](https://opensource.org/licenses/MIT)
