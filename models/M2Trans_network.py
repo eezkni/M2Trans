@@ -60,7 +60,6 @@ class M2Trans(nn.Module):
         H, W = (x.shape[2], x.shape[3])
         x = self.check_image_size(x) 
         
-
         res = self.head(x) 
         
         x = res 
@@ -139,13 +138,13 @@ class CFTM(nn.Module):
             
             x1 = self.attn1(x1) + x1
             
-            x2 = (x2 + x1)/2.0
+            x2 = (x2 + x1) / 2.0
             x2r = x2
             x2 = self.down(x2)
             x2 = self.attn2(x2) 
             x2 = self.up(x2) + x2r
 
-            x3 = (x3 + x2)/2.0
+            x3 = (x3 + x2) / 2.0
             x3r = x3
             x3 = self.down(x3)
             x3 = self.down(x3)
@@ -153,7 +152,7 @@ class CFTM(nn.Module):
             x3 = self.up(x3)
             x3 = self.up(x3) + x3r
 
-            x4 = (x4 + x3)/2.0
+            x4 = (x4 + x3) / 2.0
             x4r = x4
             x4 = self.down(x4)
             x4 = self.down(x4)
@@ -169,13 +168,13 @@ class CFTM(nn.Module):
             
             x1 = self.attn1(x1) + x1
             
-            x2 = (x2 + x1)/2.0
+            x2 = (x2 + x1) / 2.0
             x2r = x2
             x2 = self.down(x2)
             x2 = self.attn2(x2) 
             x2 = self.up(x2) + x2r
 
-            x3 = (x3 + x2)/2.0
+            x3 = (x3 + x2) / 2.0
             x3r = x3
             x3 = self.down(x3)
             x3 = self.down(x3)
@@ -183,7 +182,7 @@ class CFTM(nn.Module):
             x3 = self.up(x3)
             x3 = self.up(x3) + x3r
 
-            x4 = (x4 + x3)/2,0
+            x4 = (x4 + x3) / 2.0
             x4r = x4
             x4 = self.down(x4)
             x4 = self.down(x4)
@@ -237,6 +236,7 @@ class IWT(torch.nn.Module):
     def forward(self, x):
         return self.iwt_init(x)
 
+
 class FeedForward(nn.Module):
     def __init__(self, dim, ffn_expansion_factor=2, bias=True):
         super(FeedForward, self).__init__()
@@ -255,8 +255,6 @@ class FeedForward(nn.Module):
         
         x = self.project_in(x)
         
-        # x = self.act(self.dwconv(x))
-
         x1, x2 = self.dwconv(x).chunk(2, dim=1)
         
         x = self.act(x1) * x2
@@ -264,6 +262,7 @@ class FeedForward(nn.Module):
         x = self.project_out(x)
         
         return x
+
 
 class TBlock(nn.Module):
     def __init__(self, ch, block_size=8, halo_size=3, num_heads=4, bias=False, sr=1):
@@ -279,17 +278,11 @@ class TBlock(nn.Module):
         self.rel_h = nn.Parameter(torch.randn(1, block_size+2*halo_size, 1, self.head_ch//2), requires_grad=True)
         self.rel_w = nn.Parameter(torch.randn(1, 1, block_size+2*halo_size, self.head_ch//2), requires_grad=True)
 
-        # self.q_conv = nn.Conv2d(ch, ch, kernel_size=1, bias=bias)
-        # self.k_conv = nn.Conv2d(ch, ch, kernel_size=1, bias=bias)
-        # self.v_conv = nn.Conv2d(ch, ch, kernel_size=1, bias=bias)
         self.qkv_conv = nn.Conv2d(ch, ch*3, kernel_size=1, bias=bias)
         
         self.sr = sr
         if sr > 1:
-            # self.sampler = nn.AvgPool2d(kernel_size=sr, stride=sr)
             self.sampler = nn.MaxPool2d(kernel_size=sr, stride=sr, padding=0)
-            # self.sampler = Interpolate(scale_factor=1/sr, mode='bilinear', align_corners=False)
-            # self.LocalProp= nn.ConvTranspose2d(ch, ch, sr, stride=sr, groups=ch)
             self.LocalProp = nn.Conv2d(ch, ch, kernel_size=3, stride=1, padding=1, groups=ch, bias=True, padding_mode='reflect')
 
         self.reset_parameters()
@@ -299,8 +292,6 @@ class TBlock(nn.Module):
                
         if self.sr > 1:
             x = self.sampler(x)
-            # B, C, H, W = x.size()
-            # change the maxpooling to the DWT operation and then do the following operations
         
         # pad feature maps to multiples of window size
         B, C, H, W = x.size()
@@ -353,6 +344,7 @@ class TBlock(nn.Module):
         init.normal_(self.rel_h, 0, 1)
         init.normal_(self.rel_w, 0, 1)
         
+        
 class Interpolate(nn.Module):
     def __init__(self, scale_factor, mode, align_corners):
         super(Interpolate, self).__init__()
@@ -366,11 +358,14 @@ class Interpolate(nn.Module):
                           recompute_scale_factor=True)
         return out
 
+
 def to_3d(x):
     return rearrange(x, 'b c h w -> b (h w) c')
 
+
 def to_4d(x,h,w):
     return rearrange(x, 'b (h w) c -> b c h w',h=h,w=w)
+
 
 class MeanShift(nn.Conv2d):
     def __init__(
