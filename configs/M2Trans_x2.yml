@@ -1,0 +1,40 @@
+model: 'M2Trans'
+## parameters for plain
+scale: 2  
+rgb_range: 1.0
+colors: 3
+n_feats: 64
+num_heads: 4
+n_blocks: 8
+pretrain: 
+
+## parameters for model training
+patch_size: 384   ##  size of hr
+batch_size: 2
+data_repeat: 5 
+data_augment: 1 
+data_add_noise: False 
+cutout: False 
+cutmix: False 
+
+epochs: 200
+lr: 0.0001
+eta_min: 0.000001
+gamma: 0.5
+log_every: 200
+test_every: 1
+log_path: "./experiments"
+log_name:
+lambda_l1: 1.0
+lambda_clip: 0.01 #0.001
+
+## hardware specification    
+gpu_ids: [3]
+threads: 8
+save_image: True
+
+## data specification
+data_path: '../SR_datasets/'
+training_dataset: 'us1k'  ###  div2k or df2k
+eval_sets: ['CCA-US' , 'US-CASE' , 'US1K_23']
+
