@@ -114,10 +114,10 @@ If M2Trans helps your research or work, please consider citing the following wor
   title={M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution},
   author={Ni, Zhangkai and Xiao, Runyu and Yang, Wenhan and Wang, Hanli and Wang, Zhihua and Xiang, Lihua and Sun, Liping},
   journal={IEEE Journal of Biomedical and Health Informatics},
-  year={2024}
+  year={2024},
+  publisher={IEEE}
 }
 ```
-<!--Should be changed later -->
 
 
 ## Contact
