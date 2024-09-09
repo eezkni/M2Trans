@@ -87,7 +87,7 @@ data
 ## Testing
 ```
 cd M2Trans
-python test.py --cofig ./configs/M2Trans_x4_test.yml
+python test.py --config ./configs/M2Trans_x4_test.yml
 ```
 <!--Tips: You should download the pretrained models first on [URL]() and put the pt files in checkpoints folder first.<!--Should be changed later -->
 
