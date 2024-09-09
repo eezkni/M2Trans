@@ -125,7 +125,6 @@ class CFTM(nn.Module):
         self.feed_forward = nn.Sequential(
             nn.Conv2d(nf, nf, kernel_size=3, stride=1, padding=1, bias=True),
         )
-        #self.feed_forward = FeedForward(dim=nf, ffn_expansion_factor=1, bias=True)
         self.norm = nn.InstanceNorm2d(nf)
         
         self.down = DWT()
@@ -158,9 +157,7 @@ class CFTM(nn.Module):
             x4r = x4
             x4 = self.down(x4)
             x4 = self.down(x4)
-            #x4 = self.down(x4)
             x4 = self.attn4(x4)
-            #x4 = self.up(x4)
             x4 = self.up(x4)
             x4 = self.up(x4) + x4r
 
@@ -190,9 +187,7 @@ class CFTM(nn.Module):
             x4r = x4
             x4 = self.down(x4)
             x4 = self.down(x4)
-            #x4 = self.down(x4)
             x4 = self.attn4(x4)
-            #x4 = self.up(x4)
             x4 = self.up(x4)
             x4 = self.up(x4) + x4r
             
@@ -242,68 +237,6 @@ class IWT(torch.nn.Module):
     def forward(self, x):
         return self.iwt_init(x)
 
-class HaarUpsampling(nn.Module):
-
-    def __init__(self, channel_in):
-        super(HaarUpsampling, self).__init__()
-        self.channel_in = channel_in
-
-        self.haar_weights = torch.ones(4, 1, 2, 2)
-
-        self.haar_weights[1, 0, 0, 1] = -1
-        self.haar_weights[1, 0, 1, 1] = -1
-
-        self.haar_weights[2, 0, 1, 0] = -1
-        self.haar_weights[2, 0, 1, 1] = -1
-
-        self.haar_weights[3, 0, 1, 0] = -1
-        self.haar_weights[3, 0, 0, 1] = -1
-
-        self.haar_weights = torch.cat([self.haar_weights] * self.channel_in, 0)
-        self.haar_weights = nn.Parameter(self.haar_weights)
-        self.haar_weights.requires_grad = False
-
-    def forward(self, x):
-        #self.elements = x.shape[1] * x.shape[2] * x.shape[3]
-        #self.last_jac = self.elements / 4 * np.log(16.)
-
-        out = x.reshape([x.shape[0], 4, self.channel_in, x.shape[2], x.shape[3]])
-        out = torch.transpose(out, 1, 2)
-        out = out.reshape([x.shape[0], self.channel_in * 4, x.shape[2], x.shape[3]])
-
-        return F.conv_transpose2d(out, self.haar_weights, bias=None, stride=2, groups = self.channel_in)
-        
-class HaarDownsampling(nn.Module):
-    def __init__(self, channel_in):
-        super(HaarDownsampling, self).__init__()
-        self.channel_in = channel_in
-
-        self.haar_weights = torch.ones(4, 1, 2, 2)
-
-        self.haar_weights[1, 0, 0, 1] = -1
-        self.haar_weights[1, 0, 1, 1] = -1
-
-        self.haar_weights[2, 0, 1, 0] = -1
-        self.haar_weights[2, 0, 1, 1] = -1
-
-        self.haar_weights[3, 0, 1, 0] = -1
-        self.haar_weights[3, 0, 0, 1] = -1
-
-        self.haar_weights = torch.cat([self.haar_weights] * self.channel_in, 0)
-        self.haar_weights = nn.Parameter(self.haar_weights)
-        self.haar_weights.requires_grad = False
-
-    def forward(self, x):
-        
-        #self.elements = x.shape[1] * x.shape[2] * x.shape[3]
-        #self.last_jac = self.elements / 4 * np.log(1/16.)
-
-        out = F.conv2d(x, self.haar_weights, bias=None, stride=2, groups=self.channel_in) / 4.0
-        out = out.reshape([x.shape[0], self.channel_in, 4, x.shape[2] // 2, x.shape[3] // 2])
-        out = torch.transpose(out, 1, 2)
-        out = out.reshape([x.shape[0], self.channel_in * 4, x.shape[2] // 2, x.shape[3] // 2])
-        return out
-    
 class FeedForward(nn.Module):
     def __init__(self, dim, ffn_expansion_factor=2, bias=True):
         super(FeedForward, self).__init__()
@@ -383,17 +316,12 @@ class TBlock(nn.Module):
         qkv = self.qkv_conv(x)
         q, k, v = torch.chunk(qkv, 3, dim=1)
 
-        # q = self.q_conv(x)
         q = rearrange(q, 'b c (h k1) (w k2) -> (b h w) (k1 k2) c', k1=block, k2=block)
-        # q *= self.head_ch ** -0.5  # b*#blocks, flattened_query, c
         q = q * (self.head_ch ** -0.5)
 
-        # k = self.k_conv(x)
         k = F.unfold(k, kernel_size=block+halo*2, stride=block, padding=halo)
         k = rearrange(k, 'b (c a) l -> (b l) a c', c=c)
-        #print(k.shape)
 
-        # v = self.v_conv(x)
         v = F.unfold(v, kernel_size=block+halo*2, stride=block, padding=halo)
         v = rearrange(v, 'b (c a) l -> (b l) a c', c=c)
 
@@ -401,7 +329,6 @@ class TBlock(nn.Module):
         q, v = map(lambda i: rearrange(i, 'b a (h d) -> (b h) a d', h=heads), (q, v))
         # positional embedding
         k = rearrange(k, 'b (k1 k2) (h d) -> (b h) k1 k2 d', k1=block+2*halo, h=heads)
-        #print(k.shape)
         k_h, k_w = k.split(self.head_ch//2, dim=-1)
         k = torch.cat([k_h+self.rel_h, k_w+self.rel_w], dim=-1)
         k = rearrange(k, 'b k1 k2 d -> b (k1 k2) d')
@@ -422,9 +349,6 @@ class TBlock(nn.Module):
         return out
 
     def reset_parameters(self):
-        # init.kaiming_normal_(self.q_conv.weight, mode='fan_out', nonlinearity='relu')
-        # init.kaiming_normal_(self.k_conv.weight, mode='fan_out', nonlinearity='relu')
-        # init.kaiming_normal_(self.v_conv.weight, mode='fan_out', nonlinearity='relu')
         init.kaiming_normal_(self.qkv_conv.weight, mode='fan_out', nonlinearity='relu')
         init.normal_(self.rel_h, 0, 1)
         init.normal_(self.rel_w, 0, 1)
