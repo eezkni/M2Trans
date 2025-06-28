@@ -7,7 +7,7 @@
 
 <sup>1</sup>Tongji University, <sup>2</sup>Pengcheng Laboratory, <sup>3</sup>Shenzhen MSU-BIT University, <sup>4</sup>Shanghai Tenth Peoples Hospital
 
-This repository provides the official PyTorch implementation for the paper "M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution", IEEE Journal of Biomedical and Health Informatics (J-BHI), Early Access, August 2024. [[Paper](https://ieeexplore.ieee.org/document/10663841)] 
+This repository provides the official PyTorch implementation for the paper "M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution", IEEE Journal of Biomedical and Health Informatics (J-BHI), vol. 29, no. 5, pp. 3112-3123, May 2025. [[Paper](https://ieeexplore.ieee.org/document/10663841)] 
 
 
 ![Teaser](./img/pipeline.png)
