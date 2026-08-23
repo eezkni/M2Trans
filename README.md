@@ -1,13 +1,29 @@
-## M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution
+<div align="center">
+  <h1>M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution</h1>
+</div>
 
-#### IEEE Journal of Biomedical and Health Informatics (J-BHI)
+<h4 align="center"> 
 
 [Zhangkai Ni](https://eezkni.github.io/)<sup>1</sup>, [Runyu Xiao](https://github.com/Xiao-R-Y)<sup>1</sup>, [Wenhan Yang](https://flyywh.github.io/)<sup>2</sup>, Hanli Wang<sup>1</sup>, Zhihua Wang<sup>3</sup>, Lihua Xiang<sup>4</sup>, Liping Sun<sup>4</sup> <br>
 
 
 <sup>1</sup>Tongji University, <sup>2</sup>Pengcheng Laboratory, <sup>3</sup>Shenzhen MSU-BIT University, <sup>4</sup>Shanghai Tenth Peoples Hospital
 
-This repository provides the official PyTorch implementation for the paper "M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution", IEEE Journal of Biomedical and Health Informatics (J-BHI), vol. 29, no. 5, pp. 3112-3123, May 2025. [[Paper](https://ieeexplore.ieee.org/document/10663841)] 
+IEEE Journal of Biomedical and Health Informatics (J-BHI), 2025
+</h4>
+
+
+
+<!-- ## M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution
+
+#### IEEE Journal of Biomedical and Health Informatics (J-BHI)
+
+[Zhangkai Ni](https://eezkni.github.io/)<sup>1</sup>, [Runyu Xiao](https://github.com/Xiao-R-Y)<sup>1</sup>, [Wenhan Yang](https://flyywh.github.io/)<sup>2</sup>, Hanli Wang<sup>1</sup>, Zhihua Wang<sup>3</sup>, Lihua Xiang<sup>4</sup>, Liping Sun<sup>4</sup> <br>
+
+
+<sup>1</sup>Tongji University, <sup>2</sup>Pengcheng Laboratory, <sup>3</sup>Shenzhen MSU-BIT University, <sup>4</sup>Shanghai Tenth Peoples Hospital -->
+
+This repository provides the official PyTorch implementation for the paper "M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution", IEEE Journal of Biomedical and Health Informatics (J-BHI), vol. 29, no. 5, pp. 3112-3123, May 2025. [Paper-official](https://ieeexplore.ieee.org/document/10663841)
 
 
 ![Teaser](./img/pipeline.png)
@@ -22,11 +38,11 @@ Ultrasound image super-resolution (SR) aims to transform low-resolution images i
 
 ## Experimental Results
 
-<div align="center"> <img src=./img/performance1.png width = "800" /> </div>
-<!-- <div align="center"> <img src=./img/performance1.png width = "90%" height = "100%" /> </div> -->
+<!-- <div align="center"> <img src=./img/performance1.png width = "800" /> </div> -->
+<div align="center"> <img src=./img/performance1.png width = "90%" height = "100%" /> </div>
 
-<div align="center"> <img src=./img/performance2.png width = "800" /> </div>
-<!-- <div align="center"> <img src=./img/performance2.png width = "90%" height = "100%" /> </div> -->
+<!-- <div align="center"> <img src=./img/performance2.png width = "800" /> </div> -->
+<div align="center"> <img src=./img/performance2.png width = "90%" height = "100%" /> </div>
 
 
 ## Dependencies & Installation
@@ -120,9 +136,12 @@ This script will create a folder named ```./experiments``` in which the results 
 If M2Trans helps your research or work, please consider citing the following works:
 ```
 @article{ni2024m2trans,
-  title={M2Trans: Multi-Modal Regularized Coarse-to-Fine Transformer for Ultrasound Image Super-Resolution},
+  title={M2Trans: Multi-modal regularized coarse-to-fine transformer for ultrasound image super-resolution},
   author={Ni, Zhangkai and Xiao, Runyu and Yang, Wenhan and Wang, Hanli and Wang, Zhihua and Xiang, Lihua and Sun, Liping},
   journal={IEEE Journal of Biomedical and Health Informatics},
+  volume={29},
+  number={5},
+  pages={3112--3123},
   year={2024},
   publisher={IEEE}
 }
