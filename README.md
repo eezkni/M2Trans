@@ -39,10 +39,10 @@ Ultrasound image super-resolution (SR) aims to transform low-resolution images i
 ## Experimental Results
 
 <!-- <div align="center"> <img src=./img/performance1.png width = "800" /> </div> -->
-<div align="center"> <img src=./img/performance1.png width = "90%" height = "100%" /> </div>
+<div align="center"> <img src=./img/performance1.png width = "100%" height = "100%" /> </div>
 
 <!-- <div align="center"> <img src=./img/performance2.png width = "800" /> </div> -->
-<div align="center"> <img src=./img/performance2.png width = "90%" height = "100%" /> </div>
+<div align="center"> <img src=./img/performance2.png width = "100%" height = "100%" /> </div>
 
 
 ## Dependencies & Installation
